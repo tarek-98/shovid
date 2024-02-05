@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
-import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
 import Form from "react-bootstrap/Form";
 import Navbar from "react-bootstrap/Navbar";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { getAllProducts } from "../store/productSlice";
+import { FaSearch } from "react-icons/fa";
+import "../components/navbar.css"
 
 function NavBar() {
   const products = useSelector(getAllProducts);
@@ -13,7 +14,7 @@ function NavBar() {
   const [searchMenu, setSearchMenu] = useState(false);
 
   return (
-    <Navbar expand="lg" className="bg-body-tertiary col-lg-4" fixed="top">
+    <Navbar expand="lg" className="col-lg-4" fixed="top">
       <Container>
         <Navbar.Brand href="#">Gomla Wbas</Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" />
@@ -26,11 +27,11 @@ function NavBar() {
               }}
               type="search"
               placeholder="Search"
-              className="me-2"
+              className="me-2 form-input"
               aria-label="Search"
               style={{ textTransform: "lowercase" }}
             />
-            <Button variant="outline-success">بحث</Button>
+            <FaSearch className="nav-icon"/>
           </Form>
           {search.toLowerCase() && (
             <div className={searchMenu ? "search-menu" : "hide-searchMenu"}>
