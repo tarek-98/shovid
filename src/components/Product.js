@@ -1,11 +1,32 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
+import "./product.css";
 
-function Product() {
+function Product({ product, setVideoRef, autoplay }) {
+  const videoRef = useRef(null);
+
+  useEffect(() => {
+    if (autoplay) {
+      videoRef.current.play();
+    }
+  }, [autoplay]);
+
+  const onVideoPress = () => {
+    if (videoRef.current.paused) {
+      videoRef.current.play();
+    } else {
+      videoRef.current.pause();
+    }
+  };
   return (
-    <div>
-      <div className="body-content">
+    <div className="content">
+      <div className="card-content">
         <video
           className="player"
+          onClick={onVideoPress}
+          ref={(ref) => {
+            videoRef.current = ref;
+            setVideoRef(ref);
+          }}
           loop
           preload="auto"
           autoPlay={true}
