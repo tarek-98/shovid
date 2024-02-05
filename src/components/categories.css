@@ -38,6 +38,8 @@ a {
 }
 
 .cat-list li .cat-list-link {
+  text-decoration: none;
+  color: black;
   font-size: 14px;
   font-family: var(--font-family-manrope);
   letter-spacing: 0.3px;
