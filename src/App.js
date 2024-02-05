@@ -5,7 +5,7 @@ import Home from "./pages/Home";
 
 function App() {
   return (
-    <div className="App col-12">
+    <div className="App col-12 col-lg-4">
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Layout />}>
