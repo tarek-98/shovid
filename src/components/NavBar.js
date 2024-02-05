@@ -13,7 +13,7 @@ function NavBar() {
   const [searchMenu, setSearchMenu] = useState(false);
 
   return (
-    <Navbar expand="lg" className="bg-body-tertiary col-lg-4" sticky="bottom">
+    <Navbar expand="lg" className="bg-body-tertiary col-lg-4" fixed="top">
       <Container>
         <Navbar.Brand href="#">Gomla Wbas</Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" />
