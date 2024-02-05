@@ -17,7 +17,7 @@ import { getAllCarts } from "../store/cartSlice";
 function Footer() {
   const carts = useSelector(getAllCarts);
   return (
-    <Navbar expand="lg" className="col-lg-4 nav-buttom" fixed="bottom">
+    <Navbar expand="lg" className="col-lg-4 nav-buttom" sticky="bottom">
       <Container>
         <div className="nav-item">
           <Link to="/" className="nav-item">
