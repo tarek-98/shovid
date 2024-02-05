@@ -55,7 +55,7 @@ function CheckOut() {
   }
 
   return (
-    <div className="home">
+    <div className="home  mt-5">
       <div className="address" dir="rtl">
         <Row>
           <Col>

@@ -17,7 +17,7 @@ const CategoryProductPage = () => {
   }, [dispatch, category]);
 
   return (
-    <div className="home">
+    <div className="home mt-5">
       <div className="cat-products py-5 bg-whitesmoke">
         <div className="container">
           <div className="cat-products-content">

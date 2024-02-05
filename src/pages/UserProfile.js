@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 function UserProfile() {
   return (
-    <div className="user-account pb-5">
+    <div className="user-account pb-5 mt-5">
       <div className="container pt-3">
         <div className="box d-flex">
           <Link className="item">حسابي</Link>

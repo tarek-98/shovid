@@ -23,7 +23,7 @@ function Categories() {
   );
 
   return (
-    <div className="home">
+    <div className="home mt-5">
       <div className="sidebar-cnt pb-5">
         <ul className="cat-list">
           {categories.map((category, idx) => {

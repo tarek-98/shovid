@@ -4,7 +4,7 @@ import "../components/forgetpass.css"
 
 function ForgetPass() {
   return (
-    <div className="forget-pass">
+    <div className="forget-pass mt-5">
       <h2>هل نسيت كلمة المرور ؟</h2>
       <p>
         أدخل رقم الجوال المرتبط مع حسابك. انقر على متابعه ليتم إرسال رابط انشاء

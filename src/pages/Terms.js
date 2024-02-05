@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 function Terms() {
   return (
-    <div className="home">
+    <div className="home mt-5">
       <div className="terms pb-5" dir="rtl">
         <h3 className="fs-5 mb-3">الشروط والأحكام (اتفاقية استخدام الموقع)</h3>
         <h5>مقدمة:</h5>

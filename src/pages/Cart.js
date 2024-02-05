@@ -54,7 +54,7 @@ const CartPage = () => {
 
   if (carts.length === 0) {
     return (
-      <div className="home">
+      <div className="home mt-5">
         <div className="container my-5 text-center d-flex justify-content-center align-content-center">
           <div className="empty-cart d-flex justify-content-center flex-column align-content-center text-center">
             <img src={shopping_cart} alt="" />
@@ -74,7 +74,7 @@ const CartPage = () => {
   }
 
   return (
-    <div className="home pb-5">
+    <div className="home mt-5 pb-5">
       <div className="cart pb-5" dir="rtl">
         <div className="container">
           <div className="cart-ctable">

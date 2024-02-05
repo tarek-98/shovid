@@ -4,7 +4,7 @@ import "../components/profile.css";
 
 function Profile() {
   return (
-    <div className="home">
+    <div className="home  mt-5">
       <div className="box pb-5">
         <div className="form">
           <form action="">
