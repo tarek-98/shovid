@@ -2,3 +2,28 @@
   display: flex;
   flex-direction: column;
 }
+
+.search-menu {
+  position: absolute;
+  background-color: var(--gray-color);
+  width: 90%;
+  left: 5%;
+  top: 100%;
+  max-height: 400px;
+  overflow-y: scroll;
+  padding: 10px 20px;
+  transition: var(--main-transition);
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+  -webkit-transition: var(--main-transition);
+  -moz-transition: var(--main-transition);
+  -ms-transition: var(--main-transition);
+  -o-transition: var(--main-transition);
+}
+
+.hide-searchMenu {
+  visibility: hidden;
+}

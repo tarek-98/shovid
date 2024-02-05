@@ -1,0 +1,105 @@
+:root {
+  --main-color: #1f9ec4;
+  --orange-color: #f39535;
+  --blue-color: #4b76b8;
+  --dark-color: #001c48;
+  --gray-color: #f5f5f5;
+  --danger-color: #f78585;
+  --main-transition: 0.5s;
+}
+
+/*.user-account*/
+.user-account {
+  position: relative;
+  direction: rtl;
+  background-color: var(--gray-color);
+  margin-left: 50%;
+  width: 425px;
+  height: calc(100% - 56px);
+  transform: translatex(-50%);
+  -webkit-transform: translatex(-50%);
+  -moz-transform: translatex(-50%);
+  -ms-transform: translatex(-50%);
+  -o-transform: translatex(-50%);
+}
+
+@media screen and (max-width: 424px) {
+
+  .user-account {
+    width: 375px;
+  }
+}
+
+@media screen and (max-width: 374px) {
+
+  .user-account {
+    width: 330px;
+  }
+}
+
+.user-account .box {
+  flex-direction: column;
+}
+
+.user-account .item {
+  background-color: var(--blue-color);
+  color: white;
+  padding: 10px;
+  margin: 1px;
+  width: 100%;
+  font-size: 18px;
+  text-decoration: none;
+  transition: var(--main-transition);
+  -webkit-transition: var(--main-transition);
+  -moz-transition: var(--main-transition);
+  -ms-transition: var(--main-transition);
+  -o-transition: var(--main-transition);
+}
+
+.user-account .item:hover {
+  background-color: var(--orange-color);
+  font-weight: bold;
+  padding-right: 15px;
+}
+
+.user-account .form {
+  flex-direction: column;
+}
+
+.user-account .form .first-name label,
+.user-account .form .last-name label,
+.user-account .form .phone-number label,
+.user-account .form .pass label,
+.user-account .form .re-pass label {
+  margin-right: 20px;
+}
+
+.user-account .form .first-name input,
+.user-account .form .last-name input,
+.user-account .form .phone-number input,
+.user-account .form .pass input,
+.user-account .form .re-pass input {
+  width: 80%;
+  margin-right: 20px;
+}
+
+.user-account .lin .exit {
+  background-color: #e8e8e8;
+  color: #777777;
+  text-decoration: none;
+  text-align: center;
+  font-weight: bold;
+  margin: 5px;
+  padding: 10px 20px;
+  border: 1px solid #cccccc;
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+}
+
+.user-account .form .danger {
+  color: var(--danger-color);
+  font-weight: bold;
+}

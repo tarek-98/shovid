@@ -325,6 +325,21 @@ function Product({ product, setVideoRef, autoplay }) {
           })}
         </div>
       </div>
+      <div className={comment ? "com" : "hide-comment"}>
+          <div
+            className="close"
+            onClick={() => setComment((comment) => !comment)}
+          >
+            <IoIosCloseCircleOutline />
+          </div>
+          <div className="comm">
+            <Comments
+              product={product}
+              commentsUrl="http://localhost:3004/comments"
+              currentUserId="1"
+            />
+          </div>
+        </div>
     </div>
   );
 }
