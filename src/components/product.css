@@ -125,8 +125,9 @@ body::-webkit-scrollbar {
 }
 
 .content .option .close {
-  position: relative;
+  position: sticky;
   cursor: pointer;
+  top: -7px;
   left: 97%;
   width: fit-content;
 }
@@ -336,7 +337,7 @@ body::-webkit-scrollbar {
 
 .product-image .close {
   position: absolute;
-  top: 2%;
+  top: 1%;
   right: 5%;
   cursor: pointer;
 }
