@@ -65,6 +65,13 @@ function Product({ product, setVideoRef, autoplay }) {
       })
     );
   };
+  function disableOption() {
+    setDes(false);
+    setImg(false);
+    setOption(false);
+    setSocial(false);
+    setComment(false);
+  }
   function desToggel() {
     setDes((des) => !des);
     setImg(false);
@@ -123,7 +130,7 @@ function Product({ product, setVideoRef, autoplay }) {
   };
   return (
     <div className="content">
-      <div className="card-content">
+      <div className="card-content" onClick={() => disableOption()}>
         <video
           className="player"
           onClick={onVideoPress}
