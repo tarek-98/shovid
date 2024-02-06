@@ -15,9 +15,11 @@ function NavBar() {
   const [searchInput, setSearchInput] = useState(false);
 
   return (
-    <Navbar expand="lg" className="col-lg-4" fixed="top">
+    <Navbar expand="lg" className="col-lg-4 nav-content p-1" fixed="top">
       <Container className="nav-container">
-        <Navbar.Brand href="#">Sh.V</Navbar.Brand>
+        <Navbar.Brand href="#" className="text-white">
+          Sh.V
+        </Navbar.Brand>
         <Form className="d-flex">
           <Form.Control
             onChange={(e) => {

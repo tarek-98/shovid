@@ -1,3 +1,7 @@
+.nav-content {
+  background-color: rgba(20, 20, 20, 0.3);
+}
+
 .nav-icon {
   display: flex;
   align-items: center;
@@ -5,6 +9,7 @@
   font-size: 25px;
   cursor: pointer;
   padding-top: 20%;
+  color: white !important;
 }
 
 .nav-container {
@@ -35,4 +40,8 @@
   -moz-transition: 0.4s;
   -ms-transition: 0.4s;
   -o-transition: 0.4s;
+}
+
+.form-input-active:focus {
+  text-shadow: none !important;
 }

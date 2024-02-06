@@ -168,7 +168,13 @@ function CheckOut() {
           </Col>
           <Col>
             <div className="text-center">
-              <Link className={payBtn ? "pay-btn" : "pay-none"}>
+              <Link
+                className={
+                  payBtn
+                    ? "pay-btn text-decoration-none"
+                    : "pay-none text-decoration-none"
+                }
+              >
                 متابعة الدفع
               </Link>
             </div>
