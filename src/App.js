@@ -18,27 +18,35 @@ import CheckOut from "./pages/CheckOut";
 
 function App() {
   return (
-    <div className="App col-12 col-lg-4">
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Layout />}>
-            <Route index element={<Home />} />
-            <Route path="/product/:id" element={<ProductSinglePage />} />
-            <Route path="/cart" element={<CartPage />} />
-            <Route path="/categories" element={<Categories />} />
-            <Route path="/categories/:category" element={<CategoryProductPage />} />
-            <Route path="/profile" element={<Profile />} />
-            <Route path="/signup" element={<SignUp />} />
-            <Route path="/forget" element={<ForgetPass />} />
-            <Route path="/terms" element={<Terms />} />
-            <Route path="/account" element={<UserProfile />} />
-            <Route path="/account/info" element={<ProfileInfo />} />
-            <Route path="/account/resetPassword" element={<ResetPassword />} />
-            <Route path="/account/userAdress" element={<UserAdress />} />
-            <Route path="/account/checkout" element={<CheckOut />} />
-          </Route>
-        </Routes>
-      </BrowserRouter>
+    <div className="d-center d-flex">
+      <div className="App col-12 col-lg-4">
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<Layout />}>
+              <Route index element={<Home />} />
+              <Route path="/product/:id" element={<ProductSinglePage />} />
+              <Route path="/cart" element={<CartPage />} />
+              <Route path="/categories" element={<Categories />} />
+              <Route
+                path="/categories/:category"
+                element={<CategoryProductPage />}
+              />
+              <Route path="/profile" element={<Profile />} />
+              <Route path="/signup" element={<SignUp />} />
+              <Route path="/forget" element={<ForgetPass />} />
+              <Route path="/terms" element={<Terms />} />
+              <Route path="/account" element={<UserProfile />} />
+              <Route path="/account/info" element={<ProfileInfo />} />
+              <Route
+                path="/account/resetPassword"
+                element={<ResetPassword />}
+              />
+              <Route path="/account/userAdress" element={<UserAdress />} />
+              <Route path="/account/checkout" element={<CheckOut />} />
+            </Route>
+          </Routes>
+        </BrowserRouter>
+      </div>
     </div>
   );
 }

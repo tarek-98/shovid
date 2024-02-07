@@ -36,11 +36,10 @@ const Comment = ({
       </div>
       <div className="comment-right-part">
         <div className="comment-content mb-2">
-        <div className="img-comment-author me-2">
-          <img src={comment.userImg} alt="" className=""/>
-        </div>
+          <div className="img-comment-author me-2">
+            <img src={comment.userImg} alt="" className="" />
+          </div>
           <div className="comment-author">{comment.username}</div>
-          <div className="pt-1">{createdAt}</div>
         </div>
         {!isEditing && <div className="comment-text">{comment.body}</div>}
         {isEditing && (
@@ -54,6 +53,7 @@ const Comment = ({
             }}
           />
         )}
+        <div className="pt-1">{createdAt}</div>
         <div className="comment-actions">
           {canReply && (
             <div
@@ -64,6 +64,7 @@ const Comment = ({
             >
               Reply
             </div>
+            
           )}
           {canEdit && (
             <div

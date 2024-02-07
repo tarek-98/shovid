@@ -139,10 +139,10 @@ function Product({ product, setVideoRef, autoplay }) {
             setVideoRef(ref);
           }}
           loop
-          preload="auto"
-          autoPlay={true}
-          muted={true}
-          controls={true}
+          preload="none"
+          autoPlay
+          muted
+          // controls
           src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
         ></video>
       </div>

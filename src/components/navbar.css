@@ -1,5 +1,17 @@
 .nav-content {
   background-color: rgba(20, 20, 20, 0.3);
+  left: 50% !important;
+  transform: translateX(-50%);
+  -webkit-transform: translateX(-50%);
+  -moz-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  -o-transform: translateX(-50%);
+}
+
+@media (max-width:991px) {
+  .nav-content {
+    width: 100% !important;
+  }
 }
 
 .nav-icon {
