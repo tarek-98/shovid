@@ -121,19 +121,11 @@ function Product({ product, setVideoRef, autoplay }) {
     }
   }, [autoplay]);
 
-  const onVideoPress = () => {
-    if (videoRef.current.paused) {
-      videoRef.current.play();
-    } else {
-      videoRef.current.pause();
-    }
-  };
   return (
     <div className="content">
       <div className="card-content" onClick={() => disableOption()}>
         <video
           className="player"
-          onClick={onVideoPress}
           ref={(ref) => {
             videoRef.current = ref;
             setVideoRef(ref);
@@ -142,9 +134,14 @@ function Product({ product, setVideoRef, autoplay }) {
           preload="none"
           autoPlay
           muted
-          // controls
-          src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
-        ></video>
+          mediaGroup="videos"
+          controls="true"
+        >
+          <source
+            src="https://download.blender.org/durian/trailer/sintel_trailer-720p.mp4"
+            type="video/mp4"
+          />
+        </video>
       </div>
       <div className="sidebar">
         <div className="price">
