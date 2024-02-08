@@ -142,7 +142,7 @@ function Product({ product, setVideoRef, autoplay }) {
           loop
           preload="none"
           autoPlay
-          // muted
+          muted
           mediaGroup="video"
           // controls
         >
