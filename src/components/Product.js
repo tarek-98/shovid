@@ -234,7 +234,7 @@ function Product({ product, setVideoRef, autoplay }) {
               })}
             </div>
           </div>
-          <div className="product-single-r" dir="rtl">
+          <div className="product-single-r mt-1" dir="rtl">
             <div className="product-details font-manrope">
               <div className="title">{product.title}</div>
               <div className="price">
@@ -278,7 +278,7 @@ function Product({ product, setVideoRef, autoplay }) {
           </div>
         </div>
         <div
-          className="send-cart text-center mt-4 text-white"
+          className="send-cart text-center mt-1 text-white"
           onClick={() => {
             setAddcart((addcart) => !addcart);
             handleCart();

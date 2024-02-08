@@ -15,7 +15,7 @@
 }
 
 .product-img .product-img-zoom {
-  height: 200px;
+  height: 150px;
 }
 
 .product-img .product-img-thumbs {
@@ -24,7 +24,7 @@
 }
 
 .product-img .product-img-thumbs .thumb-item {
-  height: 80px;
+  height: 60px;
 }
 
 .product-img .product-img-thumbs .thumb-item img {

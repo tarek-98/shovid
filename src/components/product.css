@@ -32,7 +32,9 @@ body::-webkit-scrollbar {
   left: 0;
   object-fit: fill;
   width: 100%;
-  height: 95%;
+  /* height: 95%; */
+  padding-bottom: 27%;
+  aspect-ratio: 1/2;
 }
 
 .content {
@@ -103,9 +105,10 @@ body::-webkit-scrollbar {
   top: 8%;
   left: 0;
   width: 100%;
-  height: 65%;
+  height: 80%;
+  z-index: 111;
   overflow: auto;
-  background-color: rgba(20, 20, 20, 0.7);
+  background-color: rgba(20, 20, 20, 1);
   padding: 10px 20px;
   border: 1px solid white;
   transition: 0.4s;
