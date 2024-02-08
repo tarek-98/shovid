@@ -133,7 +133,7 @@ function Product({ product, setVideoRef, autoplay }) {
     <div className="content">
       <div className="card-content" onClick={() => disableOption()}>
         <video
-          onClick={() => onVideoPress()}
+          // onClick={() => onVideoPress()}
           className="player"
           ref={(ref) => {
             videoRef.current = ref;
@@ -144,7 +144,7 @@ function Product({ product, setVideoRef, autoplay }) {
           autoPlay
           muted
           mediaGroup="video"
-          // controls
+          controls={true}
         >
           <source
             src="https://download.blender.org/durian/trailer/sintel_trailer-720p.mp4"
