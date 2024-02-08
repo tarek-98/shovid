@@ -31,6 +31,7 @@ function Product({ product, setVideoRef, autoplay }) {
   const [liked, setLiked] = useState(false);
   const [changeBackground, setChangeBackground] = useState(0);
   const [quantity, setQuantity] = useState(1);
+  const [startOver, setStartOver] = useState(0);
 
   const increaseQty = () => {
     setQuantity((prevQty) => {
@@ -121,10 +122,18 @@ function Product({ product, setVideoRef, autoplay }) {
     }
   }, [autoplay]);
 
+  function onVideoPress() {
+    if (videoRef.current.paused) {
+      videoRef.current.play();
+    } else {
+      videoRef.current.pause();
+    }
+  }
   return (
     <div className="content">
       <div className="card-content" onClick={() => disableOption()}>
         <video
+          onClick={() => onVideoPress()}
           className="player"
           ref={(ref) => {
             videoRef.current = ref;
@@ -134,8 +143,8 @@ function Product({ product, setVideoRef, autoplay }) {
           preload="none"
           autoPlay
           muted
-          mediaGroup="videos"
-          controls="true"
+          mediaGroup="video"
+          // controls
         >
           <source
             src="https://download.blender.org/durian/trailer/sintel_trailer-720p.mp4"
