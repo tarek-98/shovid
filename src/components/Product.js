@@ -129,6 +129,15 @@ function Product({ product, setVideoRef, autoplay }) {
       videoRef.current.pause();
     }
   }
+
+    useEffect(() => {
+    if (comment || img || des || option) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+  });
+  
   return (
     <div className="content">
       <div className="card-content" onClick={() => disableOption()}>
