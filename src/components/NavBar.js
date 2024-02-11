@@ -58,6 +58,10 @@ function NavBar() {
                   <Link
                     to={`/product/${product.id}`}
                     className="text-decoration-none mb-2"
+                    onClick={() => {
+                      setSearch("");
+                      setSearchMenu(false);
+                    }}
                   >
                     {product.title}
                   </Link>

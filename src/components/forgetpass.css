@@ -9,32 +9,11 @@
 
 /*forgetpass*/
 .forget-pass {
-  background-color: var(--gray-color);
   padding: 20px;
   position: relative;
   direction: rtl;
-  margin-left: 50%;
-  width: 425px;
-  transform: translatex(-50%);
-  -webkit-transform: translatex(-50%);
-  -moz-transform: translatex(-50%);
-  -ms-transform: translatex(-50%);
-  -o-transform: translatex(-50%);
 }
 
-@media screen and (max-width: 424px) {
-
-  .forget-pass {
-    width: 375px;
-  }
-}
-
-@media screen and (max-width: 374px) {
-
-  .forget-pass {
-    width: 330px;
-  }
-}
 
 .forget-pass h2 {
   font-size: 20px;

@@ -12,15 +12,6 @@
 .user-account {
   position: relative;
   direction: rtl;
-  background-color: var(--gray-color);
-  margin-left: 50%;
-  width: 425px;
-  height: calc(100% - 56px);
-  transform: translatex(-50%);
-  -webkit-transform: translatex(-50%);
-  -moz-transform: translatex(-50%);
-  -ms-transform: translatex(-50%);
-  -o-transform: translatex(-50%);
 }
 
 @media screen and (max-width: 424px) {

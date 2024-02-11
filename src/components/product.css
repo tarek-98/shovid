@@ -17,9 +17,9 @@ body::-webkit-scrollbar {
 }
 
 .volume {
-  position: absolute;
-  bottom: 15%;
-  right: 3%;
+  position: fixed;
+  bottom: 19%;
+  right: 35%;
 }
 
 .volume svg {
@@ -260,6 +260,7 @@ body::-webkit-scrollbar {
 }
 
 .social .links {
+  padding-top: 20px;
   display: flex;
   justify-content: space-around;
   align-items: center;

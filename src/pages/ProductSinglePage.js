@@ -1,24 +1,23 @@
 import React, { useEffect, useRef } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
 import {
   fetchAsyncProductSingle,
   getProductSingle,
 } from "../store/productSlice";
-import { useParams } from "react-router";
 import Product from "../components/Product";
 
-function Home() {
+const ProductSinglePage = () => {
   const { id } = useParams();
-  const singleProduct = useSelector(getProductSingle);
   const dispatch = useDispatch();
+  const product = useSelector(getProductSingle);
+  const videoRefs = useRef([]);
 
+  // getting single product
   useEffect(() => {
     dispatch(fetchAsyncProductSingle(id));
-    console.log(singleProduct);
-  }, []);
+  }, [product]);
 
-  //ss
-  const videoRefs = useRef([]);
   useEffect(() => {
     const observerOptions = {
       root: null,
@@ -45,31 +44,32 @@ function Home() {
     );
 
     // We observe each video reference to trigger play/pause
-    // videoRefs.current.forEach((videoRef) => {
-    //   observer.observe(videoRef);
-    // });
+    videoRefs.current.forEach((videoRef) => {
+      observer.observe(videoRef);
+    });
 
     // We disconnect the observer when the component is unmounted
     return () => {
       observer.disconnect();
     };
-  }, [singleProduct]);
+  }, [product]);
 
   // This function handles the reference of each video
   const handleVideoRef = (index) => (ref) => {
     videoRefs.current[index] = ref;
   };
+
   return (
-    <div className="home mt-5">
-      <div className="cat-products py-5 bg-whitesmoke">
+    <main className="py-5 bg-whitesmoke">
+      <div className="product-single">
         <div className="container">
-          <div className="cat-products-content">
-            <Product product={singleProduct} />;
+          <div className="product-single-content bg-white grid">
+            <h1>{product.title}</h1>
           </div>
         </div>
       </div>
-    </div>
+    </main>
   );
-}
+};
 
-export default Home;
+export default ProductSinglePage;

@@ -20,9 +20,8 @@ import { useDispatch, useSelector } from "react-redux";
 import Comments from "./comments/Comments";
 import { addToFav, deletFromFav } from "../store/favorite-slice";
 import { addToCart } from "../store/cartSlice";
-import { unmute } from "react-html5video";
 
-function Product({ product, setVideoRef, autoplay }) {
+function Product({ product, setVideoRef, autoplay, sound }) {
   const products = useSelector((state) => state.products);
   const dispatch = useDispatch();
   const [option, setOption] = useState(false);
@@ -34,7 +33,6 @@ function Product({ product, setVideoRef, autoplay }) {
   const [liked, setLiked] = useState(false);
   const [changeBackground, setChangeBackground] = useState(0);
   const [quantity, setQuantity] = useState(1);
-  const [volume, setVolume] = useState(false);
 
   const increaseQty = () => {
     setQuantity((prevQty) => {
@@ -141,14 +139,14 @@ function Product({ product, setVideoRef, autoplay }) {
     }
   });
 
-  function toggleMute() {
-    var video = document.getElementById(`vdo${product.id}`);
-    if (video.muted) {
-      video.muted = false;
-    } else {
-      video.muted = true;
-    }
-  }
+  // function toggleMute() {
+  //   var video = document.getElementById(`vdo${product.id}`);
+  //   if (video.muted) {
+  //     video.muted = false;
+  //   } else {
+  //     video.muted = true;
+  //   }
+  // }
 
   return (
     <div className="content">
@@ -164,7 +162,7 @@ function Product({ product, setVideoRef, autoplay }) {
           loop
           preload="none"
           autoPlay
-          muted
+          muted={sound}
           mediaGroup="video"
           // controls={true}
         >
@@ -173,25 +171,6 @@ function Product({ product, setVideoRef, autoplay }) {
             type="video/mp4"
           />
         </video>
-      </div>
-      <div className="volume">
-        {volume ? (
-          <FaVolumeHigh
-            className="text-white fw-bold"
-            onClick={() => {
-              toggleMute();
-              setVolume(!volume);
-            }}
-          />
-        ) : (
-          <FaVolumeXmark
-            className="text-white fw-bold"
-            onClick={() => {
-              toggleMute();
-              setVolume(!volume);
-            }}
-          />
-        )}
       </div>
       <div className="sidebar">
         <div className="price">

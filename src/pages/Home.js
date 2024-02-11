@@ -1,12 +1,15 @@
-import React, { Fragment, useEffect, useRef } from "react";
+import React, { Fragment, useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchAsyncProducts, getAllProducts } from "../store/productSlice";
 import Product from "../components/Product";
+import { FaVolumeHigh, FaVolumeXmark } from "react-icons/fa6";
 
 function Home() {
   const products = useSelector(getAllProducts);
   const dispatch = useDispatch();
   const videoRefs = useRef([]);
+  const [sound, setSound] = useState(true);
+  const [volume, setVolume] = useState(false);
 
   useEffect(() => {
     dispatch(fetchAsyncProducts());
@@ -61,9 +64,29 @@ function Home() {
             product={product}
             setVideoRef={handleVideoRef(index)}
             autoplay
+            sound={sound}
           />
         );
       })}
+      <div className="volume">
+        {volume ? (
+          <FaVolumeHigh
+            className="text-white fw-bold"
+            onClick={() => {
+              setSound(!sound);
+              setVolume(!volume);
+            }}
+          />
+        ) : (
+          <FaVolumeXmark
+            className="text-white fw-bold"
+            onClick={() => {
+              setSound(!sound);
+              setVolume(!volume);
+            }}
+          />
+        )}
+      </div>
     </Fragment>
   );
 }
