@@ -131,7 +131,7 @@ function Product({ product, setVideoRef, autoplay }) {
   }
 
     useEffect(() => {
-    if (comment || img || des || option) {
+    if (comment || img || des || option || social) {
       document.body.style.overflow = "hidden";
     } else {
       document.body.style.overflow = "auto";
