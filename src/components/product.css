@@ -21,6 +21,7 @@ body::-webkit-scrollbar {
   bottom: 19%;
   right: 35%;
 }
+
 @media (max-width:991px) {
   .volume {
     right: 25px;

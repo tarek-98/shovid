@@ -6,20 +6,15 @@ import "../components/checkOut.css";
 import { fetchUsers } from "../store/user-slice";
 import { getAllCarts } from "../store/cartSlice";
 import { Link } from "react-router-dom";
-import Swal from "sweetalert2";
 
 function CheckOut() {
   const dispatch = useDispatch();
   const carts = useSelector(getAllCarts);
   const user = useSelector((state) => state.users);
-  const [chargeWay, setChargeWay] = useState(true);
   const [payBtn, setPayBtn] = useState(false);
 
   useEffect(() => {
     dispatch(fetchUsers(5));
-    if (CartWeight > 50) {
-      setChargeWay(false);
-    }
   }, []);
 
   const CartWeight = carts.reduce((acc, product) => {
@@ -27,16 +22,7 @@ function CheckOut() {
     return acc;
   }, 0);
 
-  function swalAlert() {
-    if (CartWeight > 50) {
-      Swal.fire({
-        title: "الشحن مع المخرجين",
-        text: "مبلغ الشحن يدفع للمخرج عند الإستلام",
-        icon: "info",
-        confirmButtonText: "فهمت",
-      });
-    }
-  }
+  
 
   function handleChargePrice() {
     if (CartWeight < 15) {
@@ -51,7 +37,11 @@ function CheckOut() {
     } else if (CartWeight < 50) {
       const price = 35;
       return price;
-    }
+    } else if (CartWeight => 50)
+    {
+      const price = 50;
+      return price;
+      }
   }
 
   return (
@@ -84,7 +74,7 @@ function CheckOut() {
             </Col>
           </Row>
         </div>
-        <div className={chargeWay ? "charge mb-3" : "hide"} dir="rtl">
+        <div className="charge mb-3" dir="rtl">
           <Row>
             <Col>
               <div className="title d-flex justify-content-between">
@@ -114,41 +104,6 @@ function CheckOut() {
             </Col>
           </Row>
         </div>
-        <div className={chargeWay ? "hide" : "charge mb-3"} dir="rtl">
-          <Row>
-            <Col>
-              <div className="title d-flex justify-content-between">
-                <p className="m-0">
-                  <FaTruck className="ms-2 truck" />
-                  خيارات التسليم
-                </p>
-              </div>
-              <div className="check-content">
-                <div className="main-address pb-4">
-                  <label
-                    htmlFor="charge-add2"
-                    className="d-flex align-content-center p-2 pt-4 pb-1"
-                  >
-                    <input
-                      type="radio"
-                      name="delivry"
-                      id="charge-add2"
-                      checked
-                    />
-                    <p className="m-0 ms-2 me-2">
-                      {" "}
-                      الشحن مع المخرجين (الوزن :{CartWeight} كجم)
-                    </p>
-                    <p className="me-4 m-0">السعر 00 ر.س</p>
-                  </label>
-                  <span className="d-flex align-content-center text-black-50 pe-3 pb-2">
-                    ( مبلغ الشحن يدفع للمخرج عند الإستلام )
-                  </span>
-                </div>
-              </div>
-            </Col>
-          </Row>
-        </div>
         <div className="pay" dir="rtl">
           <Row>
             <Col xs={8}>
@@ -156,7 +111,6 @@ function CheckOut() {
                 <input
                   onClick={() => {
                     setPayBtn((payBtn) => !payBtn);
-                    swalAlert();
                   }}
                   type="checkbox"
                   id="pay-terms"
