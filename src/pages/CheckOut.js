@@ -31,7 +31,7 @@ function CheckOut() {
     if (CartWeight > 50) {
       Swal.fire({
         title: "الشحن مع المخرجين",
-        text: "مبلغ الشحن يدفع للمخرج عند الإستلام ",
+        text: "مبلغ الشحن يدفع للمخرج عند الإستلام",
         icon: "info",
         confirmButtonText: "فهمت",
       });

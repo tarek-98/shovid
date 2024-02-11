@@ -294,6 +294,9 @@ function Product({ product, setVideoRef, autoplay }) {
         <p className="mb-0 ms-2">Added Sucssesfully</p>
       </div>
       <div className={social ? "social" : "hidden"}>
+        <div className="close" onClick={() => setSocial((social) => !social)}>
+          <IoIosCloseCircleOutline />
+        </div>
         <div className="links">
           <FaFacebook />
           <FaTiktok />
