@@ -16,6 +16,17 @@ body::-webkit-scrollbar {
   display: none;
 }
 
+.volume {
+  position: absolute;
+  bottom: 10%;
+  right: 3%;
+}
+
+.volume svg {
+  font-size: 20px;
+  cursor: pointer;
+}
+
 .card-content {
   width: 100%;
   overflow: hidden;

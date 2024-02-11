@@ -11,6 +11,8 @@ import {
   FaTiktok,
   FaTwitterSquare,
 } from "react-icons/fa";
+import { FaVolumeHigh } from "react-icons/fa6";
+import { FaVolumeXmark } from "react-icons/fa6";
 import { FaCartPlus } from "react-icons/fa";
 import { FaShare } from "react-icons/fa";
 import { FaCommentDots } from "react-icons/fa";
@@ -18,6 +20,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Comments from "./comments/Comments";
 import { addToFav, deletFromFav } from "../store/favorite-slice";
 import { addToCart } from "../store/cartSlice";
+import { unmute } from "react-html5video";
 
 function Product({ product, setVideoRef, autoplay }) {
   const products = useSelector((state) => state.products);
@@ -31,7 +34,7 @@ function Product({ product, setVideoRef, autoplay }) {
   const [liked, setLiked] = useState(false);
   const [changeBackground, setChangeBackground] = useState(0);
   const [quantity, setQuantity] = useState(1);
-  const [startOver, setStartOver] = useState(0);
+  const [volume, setVolume] = useState(false);
 
   const increaseQty = () => {
     setQuantity((prevQty) => {
@@ -130,19 +133,29 @@ function Product({ product, setVideoRef, autoplay }) {
     }
   }
 
-    useEffect(() => {
+  useEffect(() => {
     if (comment || img || des || option || social) {
       document.body.style.overflow = "hidden";
     } else {
       document.body.style.overflow = "auto";
     }
   });
-  
+
+  function toggleMute() {
+    var video = document.getElementById("myVideo");
+    if (video.muted) {
+      video.muted = false;
+    } else {
+      video.muted = true;
+    }
+  }
+
   return (
     <div className="content">
       <div className="card-content" onClick={() => disableOption()}>
         <video
-          // onClick={() => onVideoPress()}
+          onClick={() => onVideoPress()}
+          id="myVideo"
           className="player"
           ref={(ref) => {
             videoRef.current = ref;
@@ -153,13 +166,32 @@ function Product({ product, setVideoRef, autoplay }) {
           autoPlay
           muted
           mediaGroup="video"
-          controls={true}
+          // controls={true}
         >
           <source
             src="https://download.blender.org/durian/trailer/sintel_trailer-720p.mp4"
             type="video/mp4"
           />
         </video>
+      </div>
+      <div className="volume">
+        {volume ? (
+          <FaVolumeHigh
+            className="text-white fw-bold"
+            onClick={() => {
+              toggleMute();
+              setVolume(!volume);
+            }}
+          />
+        ) : (
+          <FaVolumeXmark
+            className="text-white fw-bold"
+            onClick={() => {
+              toggleMute();
+              setVolume(!volume);
+            }}
+          />
+        )}
       </div>
       <div className="sidebar">
         <div className="price">

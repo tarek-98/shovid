@@ -14,6 +14,7 @@ function Home() {
 
   useEffect(() => {
     dispatch(fetchAsyncProductSingle(id));
+    console.log(singleProduct);
   }, []);
 
   //ss

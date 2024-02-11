@@ -14,6 +14,14 @@ function NavBar() {
   const [searchMenu, setSearchMenu] = useState(false);
   const [searchInput, setSearchInput] = useState(false);
 
+  useEffect(() => {
+    if (searchInput) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+  });
+
   return (
     <Navbar expand="lg" className="col-lg-4 nav-content p-1" fixed="top">
       <Container className="nav-container">
