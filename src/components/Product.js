@@ -142,7 +142,7 @@ function Product({ product, setVideoRef, autoplay }) {
   });
 
   function toggleMute() {
-    var video = document.getElementById("myVideo");
+    var video = document.getElementById(`vdo${product.id}`);
     if (video.muted) {
       video.muted = false;
     } else {
@@ -155,7 +155,7 @@ function Product({ product, setVideoRef, autoplay }) {
       <div className="card-content" onClick={() => disableOption()}>
         <video
           onClick={() => onVideoPress()}
-          id="myVideo"
+          id={`vdo${product.id}`}
           className="player"
           ref={(ref) => {
             videoRef.current = ref;
