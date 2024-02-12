@@ -268,14 +268,35 @@ body::-webkit-scrollbar {
 .social .links {
   padding-top: 20px;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-evenly;
   align-items: center;
 }
 
 .social .links svg {
   font-size: 30px;
-  margin: 5px;
   cursor: pointer;
+}
+
+.social .links .facebook {
+  color: blue;
+}
+
+.social .links .twitter {
+  color: #56CCF2;
+}
+
+.social .links .instagram {
+  color: #F434E2;
+}
+
+.social .links .snapshat {
+  color: yellowgreen;
+  ;
+}
+
+.social .links .twitter {
+  color: #56CCF2;
+  ;
 }
 
 .hidden {

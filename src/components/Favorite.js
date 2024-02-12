@@ -16,10 +16,10 @@ import { FaShare } from "react-icons/fa";
 import { FaCommentDots } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import Comments from "./comments/Comments";
-import { addToFav, removeFromFav } from "../store/favorite-slice";
+import { removeFromFav } from "../store/favorite-slice";
 import { addToCart } from "../store/cartSlice";
 
-function Product({ product, setVideoRef, autoplay, sound }) {
+function Favorite({ product, setVideoRef, autoplay, sound }) {
   const products = useSelector((state) => state.products);
   const dispatch = useDispatch();
   const [option, setOption] = useState(false);
@@ -169,14 +169,12 @@ function Product({ product, setVideoRef, autoplay, sound }) {
         <div
           className="item"
           onClick={() => {
-            liked
-              ? dispatch(removeFromFav(product))
-              : dispatch(addToFav(product));
+            dispatch(removeFromFav(product.id));
           }}
         >
           <FaHeart
             style={{
-              color: liked ? "#FF0000" : "white",
+              color: "#FF0000",
             }}
             onClick={handleLikeClick}
           />
@@ -369,4 +367,4 @@ function Product({ product, setVideoRef, autoplay, sound }) {
   );
 }
 
-export default Product;
+export default Favorite;

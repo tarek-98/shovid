@@ -15,6 +15,7 @@ import ResetPassword from "./pages/ResetPassword";
 import UserAdress from "./pages/UserAdress";
 import ProfileInfo from "./pages/ProfileInfo";
 import CheckOut from "./pages/CheckOut";
+import FavoritePage from "./pages/FavoritePage";
 
 function App() {
   return (
@@ -43,6 +44,7 @@ function App() {
               />
               <Route path="/account/userAdress" element={<UserAdress />} />
               <Route path="/account/checkout" element={<CheckOut />} />
+              <Route path="/account/favorite" element={<FavoritePage />} />
             </Route>
           </Routes>
         </BrowserRouter>
