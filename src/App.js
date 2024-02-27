@@ -16,6 +16,7 @@ import UserAdress from "./pages/UserAdress";
 import ProfileInfo from "./pages/ProfileInfo";
 import CheckOut from "./pages/CheckOut";
 import FavoritePage from "./pages/FavoritePage";
+import VendorProfile from "./pages/vendor/VendorProfile";
 
 function App() {
   return (
@@ -37,6 +38,7 @@ function App() {
               <Route path="/forget" element={<ForgetPass />} />
               <Route path="/terms" element={<Terms />} />
               <Route path="/account" element={<UserProfile />} />
+              <Route path="/vendor" element={<VendorProfile />} />
               <Route path="/account/info" element={<ProfileInfo />} />
               <Route
                 path="/account/resetPassword"

@@ -46,7 +46,9 @@ const productSlice = createSlice({
 export const fetchAsyncProducts = createAsyncThunk(
   "products/fetch",
   async () => {
-    const response = await fetch("https://dummyjson.com/products");
+    const response = await fetch(
+      "https://gomla-wbs.el-programmer.com/api/products/latest"
+    );
     const data = await response.json();
     return data.products;
   }

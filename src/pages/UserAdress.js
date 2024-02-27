@@ -6,11 +6,11 @@ import { useParams } from "react-router";
 function UserAdress() {
   const { id } = useParams();
   const dispatch = useDispatch();
-  const user = useSelector((state) => state.users);
+  const users = useSelector((state) => state.users);
 
   useEffect(() => {
     dispatch(fetchUsers(5));
-    console.log(user);
+    console.log(users);
   }, []);
 
   return (
@@ -21,7 +21,7 @@ function UserAdress() {
           <hr />
         </div>
         <div className="">
-          <p>City: {user.address.city}</p>
+          <p>City: {users.email}</p>
         </div>
       </div>
     </div>

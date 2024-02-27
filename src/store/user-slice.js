@@ -3,7 +3,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 export const fetchUsers = createAsyncThunk(
   "userSlice/fetchUser",
   async (id) => {
-    const res = await fetch(`https://dummyjson.com/users/${id}`);
+    const res = await fetch(`https://fakestoreapi.com/users/${id}`);
     const data = await res.json();
     return data;
   }

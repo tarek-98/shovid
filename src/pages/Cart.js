@@ -18,7 +18,7 @@ const CartPage = () => {
   const carts = useSelector(getAllCarts);
 
   const CArtTotlaPrice = carts.reduce((acc, product) => {
-    acc += product.price * product.quantity;
+    acc += product.unit_price * product.quantity;
     return acc;
   }, 0);
   const CartWeight = carts.reduce((acc, product) => {
@@ -85,7 +85,7 @@ const CartPage = () => {
                     <div className="cart-ctr fw-6">
                       <div className="cart-cth">
                         <span className="cart-ctxt">اسم المنتج</span>
-                        <span className="cart-ctxt">{cart.title}</span>
+                        <span className="cart-ctxt">{cart.name}</span>
                       </div>
                       <div className="cart-cth">
                         <span className="cart-ctxt">اللون</span>
@@ -97,7 +97,7 @@ const CartPage = () => {
                       </div>
                       <div className="cart-cth">
                         <span className="cart-ctxt">سعر الوحدة</span>
-                        <span className="cart-ctxt">{cart.price} ر.س</span>
+                        <span className="cart-ctxt">{cart.unit_price} ر.س</span>
                       </div>
                       <div className="cart-cth">
                         <span className="cart-ctxt">الكمية</span>

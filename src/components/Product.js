@@ -49,10 +49,10 @@ function Product({ product, setVideoRef, autoplay, sound }) {
   };
   const addToCartHandler = (product) => {
     // - product.price * (product.discountPercentage / 100);
-    let discountedPrice = product.price;
-    let totalPrice = quantity * product.price;
+    let discountedPrice = product.unit_price;
+    let totalPrice = quantity * product.unit_price;
     let productColor = product.images[changeBackground];
-    let productWeight = product.stock; //edit
+    let productWeight = product.unit_price; //edit
 
     dispatch(
       addToCart({
@@ -155,15 +155,12 @@ function Product({ product, setVideoRef, autoplay, sound }) {
           mediaGroup="video"
           // controls={true}
         >
-          <source
-            src="https://download.blender.org/durian/trailer/sintel_trailer-720p.mp4"
-            type="video/mp4"
-          />
+          <source src={product.video_url} type="video/mp4" />
         </video>
       </div>
       <div className="sidebar">
         <div className="price">
-          <p className="m-0 text-white">{product.price}</p>
+          <p className="m-0 text-white">{product.unit_price}</p>
           <span className="text-white">ر.س</span>
         </div>
         <div
@@ -181,7 +178,9 @@ function Product({ product, setVideoRef, autoplay, sound }) {
             onClick={handleLikeClick}
           />
           <span>
-            {formatLikesCount(parseLikesCount(product.price) + (liked ? 1 : 0))}
+            {formatLikesCount(
+              parseLikesCount(product.unit_price) + (liked ? 1 : 0)
+            )}
           </span>
         </div>
         <div
@@ -245,11 +244,11 @@ function Product({ product, setVideoRef, autoplay, sound }) {
           </div>
           <div className="product-single-r mt-1" dir="rtl">
             <div className="product-details font-manrope">
-              <div className="title">{product.title}</div>
+              <div className="title">{product.name}</div>
               <div className="price">
                 <div className="d-flex align-center">
                   <div className="old-price">
-                    السعر: {product.price * quantity} ر.س
+                    السعر: {product.unit_price * quantity} ر.س
                   </div>
                 </div>
               </div>

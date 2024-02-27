@@ -18,7 +18,7 @@ function Profile() {
               <Link className="forget" to="/forget">
                 نسيت كلمة المرور؟
               </Link>
-              <Link className="send" to="/account">
+              <Link className="send" to="/vendor">
                 دخول
               </Link>
             </div>
