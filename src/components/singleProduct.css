@@ -58,8 +58,9 @@
   margin-bottom: 1.6rem;
 }
 
-.product-single-r .product-details .price {
-  background-color: rgba(0, 0, 0, 0.02);
+.qty {
+  display: flex;
+  flex-direction: row;
 }
 
 .qty .qty-change .qty-decrease,

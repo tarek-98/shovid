@@ -186,18 +186,6 @@ function Product({ product, setVideoRef, autoplay, sound }) {
         <div
           className="item"
           onClick={() => {
-            setOption((option) => !option);
-            setSocial(false);
-          }}
-        >
-          <FaCartPlus />
-          <span className="addCart">
-            اضف <br /> للعربة
-          </span>
-        </div>
-        <div
-          className="item"
-          onClick={() => {
             setComment((comment) => !comment);
             setOption(false);
             setSocial(false);
@@ -252,9 +240,8 @@ function Product({ product, setVideoRef, autoplay, sound }) {
                   </div>
                 </div>
               </div>
-
-              <div className="qty flex align-center m-1">
-                <div className="qty-text mb-2">الكمية:</div>
+              <div className="qty align-center m-1">
+                <div className="qty-text mb-2 ms-2">الكمية:</div>
                 <div className="qty-change d-flex">
                   <button
                     type="button"
@@ -274,13 +261,21 @@ function Product({ product, setVideoRef, autoplay, sound }) {
                     +
                   </button>
                 </div>
-                {product.stock === 0 ? (
+                {product.current_stock === 0 ? (
                   <div className="qty-error text-uppercase bg-danger text-white">
                     out of stock
                   </div>
                 ) : (
                   ""
                 )}
+              </div>
+              <div className="size-opt d-flex">
+                <div className="size-text mb-2 ms-2">المقاس:</div>
+                <div className="size-change d-flex">
+                  <select name="" id="">
+                    <option value="">-- اختر المقاس المناسب --</option>
+                  </select>
+                </div>
               </div>
             </div>
           </div>
@@ -294,7 +289,7 @@ function Product({ product, setVideoRef, autoplay, sound }) {
             addToCartHandler(product);
           }}
         >
-          اضف للعربة
+          اضف الي السلة
         </div>
       </div>
       <div className={addcart ? "added-cart" : "hide-cart"}>
@@ -313,40 +308,28 @@ function Product({ product, setVideoRef, autoplay, sound }) {
           <FaTwitterSquare className="twitter" />
         </div>
       </div>
-      <div className="description">
+      <div className="description ps-2 pe-2">
         <div className="description-btn">
-          <p className="" onClick={() => desToggel()}>
-            التفاصيل
-          </p>
-          <p className="" onClick={() => desToggel2()}>
-            الصور
-          </p>
-        </div>
-      </div>
-      <div className={des ? "des-info" : "hide"}>
-        <div className="close" onClick={() => setDes((des) => !des)}>
-          <IoIosCloseCircleOutline />
-        </div>
-        <h3 className="text-center">{product.title}</h3>
-        <p>{product.description}</p>
-      </div>
-      <div className={img ? "product-image" : "hide"}>
-        <div className="close" onClick={() => setImg((img) => !img)}>
-          <IoIosCloseCircleOutline />
-        </div>
-        <div className="product-info p-2">
-          <div className="image">
-            <img src={product.images[changeBackground]} alt="" />
-          </div>
-        </div>
-        <div className="product-slider-img">
-          {product.images.map((image, index) => {
-            return (
-              <div onClick={() => setChangeBackground(index)}>
-                <img src={image} alt="" />
+          <div className="row">
+            <div className="col-lg-7 col-md-6 col-sm-6  d-flex justify-content-center align-items-center">
+              <div className="product-name p-2">
+                <p className="m-0">{product.name}</p>
               </div>
-            );
-          })}
+            </div>
+            <div className="col-lg-5 col-md-6 col-sm-6 d-flex justify-content-center align-items-center">
+              <div className="add-cart p-2">
+                <p
+                  className="m-0"
+                  onClick={() => {
+                    setOption((option) => !option);
+                    setSocial(false);
+                  }}
+                >
+                  أضف الي السلة
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
       <div className={comment ? "com" : "hide-comment"}>

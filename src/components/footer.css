@@ -1,5 +1,6 @@
 .nav-buttom {
-  background-color: rgba(20, 20, 20, 0.3);;
+  background-color: rgba(20, 20, 20, 0.3);
+  ;
   left: 50% !important;
   transform: translateX(-50%);
   -webkit-transform: translateX(-50%);
@@ -47,8 +48,9 @@
 
 .nav-buttom .item-name {
   color: #d4d3d3;
-  font-size: 10px;
+  font-size: 12px;
   margin-top: 2px;
+  font-weight: bold;
 }
 
 .nav-buttom .active {
