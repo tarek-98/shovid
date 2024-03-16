@@ -94,3 +94,8 @@
   -ms-transition: var(--transition-ease);
   -o-transition: var(--transition-ease);
 }
+
+.old-price {
+  color: red;
+  text-decoration: line-through;
+}

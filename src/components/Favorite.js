@@ -18,6 +18,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Comments from "./comments/Comments";
 import { removeFromFav } from "../store/favorite-slice";
 import { addToCart } from "../store/cartSlice";
+import Swal from "sweetalert2";
 
 function Favorite({ product, setVideoRef, autoplay, sound }) {
   const products = useSelector((state) => state.products);
@@ -31,6 +32,7 @@ function Favorite({ product, setVideoRef, autoplay, sound }) {
   const [liked, setLiked] = useState(false);
   const [changeBackground, setChangeBackground] = useState(0);
   const [quantity, setQuantity] = useState(1);
+  const [discount, setdiscount] = useState(false);
 
   const increaseQty = () => {
     setQuantity((prevQty) => {
@@ -49,16 +51,17 @@ function Favorite({ product, setVideoRef, autoplay, sound }) {
   };
   const addToCartHandler = (product) => {
     // - product.price * (product.discountPercentage / 100);
-    let discountedPrice = product.price;
-    let totalPrice = quantity * product.price;
+    let discountedPrice = product.unit_price - product.discount;
+    let totalPrice = quantity * discountedPrice;
     let productColor = product.images[changeBackground];
-    let productWeight = product.stock; //edit
+    let productWeight = product.unit_price; //edit
 
     dispatch(
       addToCart({
         ...product,
         quantity: quantity,
         totalPrice,
+        size: toggleState,
         discountedPrice,
         productColor,
         productWeight,
@@ -72,23 +75,14 @@ function Favorite({ product, setVideoRef, autoplay, sound }) {
     setSocial(false);
     setComment(false);
   }
-  function desToggel() {
-    setDes((des) => !des);
-    setImg(false);
-    setOption(false);
-    setSocial(false);
-  }
-  function desToggel2() {
-    setImg((img) => !img);
-    setDes(false);
-    setOption(false);
-    setSocial(false);
-  }
-  const handleCart = () => {
-    setTimeout(() => {
-      setAddcart(false);
-    }, 2000);
-  };
+
+  //handle size
+  const data = [41, 42, 43];
+  const [toggleState, setToggleState] = useState(
+    data.map((siz) => {
+      return siz;
+    })
+  );
 
   // Function to convert likes count to a number
   const parseLikesCount = (count) => {
@@ -137,6 +131,14 @@ function Favorite({ product, setVideoRef, autoplay, sound }) {
     }
   });
 
+  function sweetAlertAdd() {
+    Swal.fire({
+      title: "تم اضافة المنتج بنجاح",
+      icon: "success",
+      confirmButtonText: "فهمت",
+    });
+  }
+
   return (
     <div className="content">
       <div className="card-content" onClick={() => disableOption()}>
@@ -155,15 +157,12 @@ function Favorite({ product, setVideoRef, autoplay, sound }) {
           mediaGroup="video"
           // controls={true}
         >
-          <source
-            src="https://download.blender.org/durian/trailer/sintel_trailer-720p.mp4"
-            type="video/mp4"
-          />
+          <source src={product.video_url} type="video/mp4" />
         </video>
       </div>
       <div className="sidebar">
         <div className="price">
-          <p className="m-0 text-white">{product.price}</p>
+          <p className="m-0 text-white">{product.unit_price}</p>
           <span className="text-white">ر.س</span>
         </div>
         <div
@@ -179,19 +178,9 @@ function Favorite({ product, setVideoRef, autoplay, sound }) {
             onClick={handleLikeClick}
           />
           <span>
-            {formatLikesCount(parseLikesCount(product.price) + (liked ? 1 : 0))}
-          </span>
-        </div>
-        <div
-          className="item"
-          onClick={() => {
-            setOption((option) => !option);
-            setSocial(false);
-          }}
-        >
-          <FaCartPlus />
-          <span className="addCart">
-            اضف <br /> للعربة
+            {formatLikesCount(
+              parseLikesCount(product.unit_price) + (liked ? 1 : 0)
+            )}
           </span>
         </div>
         <div
@@ -243,17 +232,22 @@ function Favorite({ product, setVideoRef, autoplay, sound }) {
           </div>
           <div className="product-single-r mt-1" dir="rtl">
             <div className="product-details font-manrope">
-              <div className="title">{product.title}</div>
-              <div className="price">
+              <div className="title mb-3">{product.name}</div>
+              <div className="price mb-2">
                 <div className="d-flex align-center">
-                  <div className="old-price">
-                    السعر: {product.price * quantity} ر.س
+                  <div className="new-price ms-3">
+                    <span>السعر : </span>
+                    <span>
+                      {(product.unit_price - product.discount) * quantity} ر.س
+                    </span>
                   </div>
+                  {discount && (
+                    <div className="old-price">{product.unit_price} ر.س</div>
+                  )}
                 </div>
               </div>
-
-              <div className="qty flex align-center m-1">
-                <div className="qty-text mb-2">الكمية:</div>
+              <div className="qty align-center m-1 mb-2">
+                <div className="qty-text mb-2 ms-2">الكمية :</div>
                 <div className="qty-change d-flex">
                   <button
                     type="button"
@@ -273,7 +267,7 @@ function Favorite({ product, setVideoRef, autoplay, sound }) {
                     +
                   </button>
                 </div>
-                {product.stock === 0 ? (
+                {product.current_stock === 0 ? (
                   <div className="qty-error text-uppercase bg-danger text-white">
                     out of stock
                   </div>
@@ -281,19 +275,44 @@ function Favorite({ product, setVideoRef, autoplay, sound }) {
                   ""
                 )}
               </div>
+              <div className="size-opt d-flex">
+                <div className="size-text mb-2 ms-2">المقاس :</div>
+                <div className="size-change d-flex">
+                  <ul className="size-list">
+                    {data.map((siz) => {
+                      return (
+                        <li
+                          className="list-item"
+                          onClick={() => setToggleState(siz)}
+                        >
+                          <span
+                            className={
+                              toggleState === siz
+                                ? "list-item-opt active"
+                                : "list-item-opt"
+                            }
+                          >
+                            {siz}
+                          </span>
+                        </li>
+                      );
+                    })}
+                  </ul>
+                </div>
+              </div>
             </div>
           </div>
         </div>
         <div
           className="send-cart text-center mt-1 text-white"
           onClick={() => {
-            setAddcart((addcart) => !addcart);
-            handleCart();
+            // setAddcart((addcart) => !addcart);
             setOption((option) => !option);
             addToCartHandler(product);
+            sweetAlertAdd();
           }}
         >
-          اضف للعربة
+          اضف الي السلة
         </div>
       </div>
       <div className={addcart ? "added-cart" : "hide-cart"}>
@@ -312,40 +331,28 @@ function Favorite({ product, setVideoRef, autoplay, sound }) {
           <FaTwitterSquare className="twitter" />
         </div>
       </div>
-      <div className="description">
+      <div className="description ps-2 pe-2">
         <div className="description-btn">
-          <p className="" onClick={() => desToggel()}>
-            التفاصيل
-          </p>
-          <p className="" onClick={() => desToggel2()}>
-            الصور
-          </p>
-        </div>
-      </div>
-      <div className={des ? "des-info" : "hide"}>
-        <div className="close" onClick={() => setDes((des) => !des)}>
-          <IoIosCloseCircleOutline />
-        </div>
-        <h3 className="text-center">{product.title}</h3>
-        <p>{product.description}</p>
-      </div>
-      <div className={img ? "product-image" : "hide"}>
-        <div className="close" onClick={() => setImg((img) => !img)}>
-          <IoIosCloseCircleOutline />
-        </div>
-        <div className="product-info p-2">
-          <div className="image">
-            <img src={product.images[changeBackground]} alt="" />
-          </div>
-        </div>
-        <div className="product-slider-img">
-          {product.images.map((image, index) => {
-            return (
-              <div onClick={() => setChangeBackground(index)}>
-                <img src={image} alt="" />
+          <div className="row">
+            <div className="col-lg-6 d-flex justify-content-center align-items-center">
+              <div className="product-name p-2">
+                <p className="m-0">{product.name}</p>
               </div>
-            );
-          })}
+            </div>
+            <div className="col-lg-6 d-flex justify-content-center align-items-center">
+              <div className="add-cart p-2">
+                <p
+                  className="m-0"
+                  onClick={() => {
+                    setOption((option) => !option);
+                    setSocial(false);
+                  }}
+                >
+                  أضف الي السلة
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
       <div className={comment ? "com" : "hide-comment"}>

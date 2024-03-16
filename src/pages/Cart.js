@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { shopping_cart } from "../utils/images";
 import { Link } from "react-router-dom";
@@ -18,7 +18,7 @@ const CartPage = () => {
   const carts = useSelector(getAllCarts);
 
   const CArtTotlaPrice = carts.reduce((acc, product) => {
-    acc += product.unit_price * product.quantity;
+    acc += product.discountedPrice * product.quantity;
     return acc;
   }, 0);
   const CartWeight = carts.reduce((acc, product) => {
@@ -97,7 +97,18 @@ const CartPage = () => {
                       </div>
                       <div className="cart-cth">
                         <span className="cart-ctxt">سعر الوحدة</span>
-                        <span className="cart-ctxt">{cart.unit_price} ر.س</span>
+                        <span
+                          className={
+                            cart.unit_price === cart.discountedPrice
+                              ? "d-none"
+                              : "cart-ctxt old-price"
+                          }
+                        >
+                          {cart.unit_price} ر.س
+                        </span>
+                        <span className="cart-ctxt">
+                          {cart.discountedPrice} ر.س
+                        </span>
                       </div>
                       <div className="cart-cth">
                         <span className="cart-ctxt">الكمية</span>
@@ -114,11 +125,9 @@ const CartPage = () => {
                             >
                               -
                             </button>
-
                             <div className="qty-value flex align-center justify-center">
                               {cart.quantity}
                             </div>
-
                             <button
                               type="button"
                               className="qty-increase flex align-center justify-center"
@@ -131,6 +140,12 @@ const CartPage = () => {
                               +
                             </button>
                           </div>
+                        </div>
+                      </div>
+                      <div className="size-opt cart-cth">
+                        <div className="size-text mb-2 ms-2">المقاس :</div>
+                        <div className="size-change d-flex">
+                          <p>{cart.size}</p>
                         </div>
                       </div>
                       <div className="cart-cth">

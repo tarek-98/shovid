@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import "./product.css";
 import "./singleProduct.css";
 import { IoIosCloseCircleOutline } from "react-icons/io";
+import Swal from "sweetalert2";
 import {
   FaCheck,
   FaFacebook,
@@ -31,6 +32,13 @@ function Product({ product, setVideoRef, autoplay, sound }) {
   const [liked, setLiked] = useState(false);
   const [changeBackground, setChangeBackground] = useState(0);
   const [quantity, setQuantity] = useState(1);
+  const [discount, setdiscount] = useState(false);
+
+  useEffect(() => {
+    if (product.discount > 0) {
+      setdiscount(true);
+    }
+  }, []);
 
   const increaseQty = () => {
     setQuantity((prevQty) => {
@@ -47,10 +55,19 @@ function Product({ product, setVideoRef, autoplay, sound }) {
       return tempQty;
     });
   };
+
+  //handle size
+  const data = [41, 42, 43];
+  const [toggleState, setToggleState] = useState(
+    data.map((siz) => {
+      return siz;
+    })
+  );
+
   const addToCartHandler = (product) => {
     // - product.price * (product.discountPercentage / 100);
-    let discountedPrice = product.unit_price;
-    let totalPrice = quantity * product.unit_price;
+    let discountedPrice = product.unit_price - product.discount;
+    let totalPrice = quantity * discountedPrice;
     let productColor = product.images[changeBackground];
     let productWeight = product.unit_price; //edit
 
@@ -59,6 +76,7 @@ function Product({ product, setVideoRef, autoplay, sound }) {
         ...product,
         quantity: quantity,
         totalPrice,
+        size: toggleState,
         discountedPrice,
         productColor,
         productWeight,
@@ -137,6 +155,16 @@ function Product({ product, setVideoRef, autoplay, sound }) {
     }
   });
 
+  function sweetAlertAdd() {
+    Swal.fire({
+      title: "تم اضافة المنتج بنجاح",
+      icon: "success",
+      confirmButtonText: "فهمت",
+    });
+  }
+
+  const img_url =
+    "https://gomla-wbs.el-programmer.com/storage/app/public/product";
   return (
     <div className="content">
       <div className="card-content" onClick={() => disableOption()}>
@@ -212,7 +240,7 @@ function Product({ product, setVideoRef, autoplay, sound }) {
           <div className="product-img">
             <div className="product-img-zoom w-100 mb-2">
               <img
-                src={product.images[changeBackground]}
+                src={`${img_url}/${product.images[changeBackground]}`}
                 alt=""
                 className="img-cover w-100 h-100"
               />
@@ -224,7 +252,11 @@ function Product({ product, setVideoRef, autoplay, sound }) {
                     className="thumb-item"
                     onClick={() => setChangeBackground(index)}
                   >
-                    <img src={image} alt="" className="img-cover w-100" />
+                    <img
+                      src={`${img_url}/${image}`}
+                      alt=""
+                      className="img-cover w-100"
+                    />
                   </div>
                 );
               })}
@@ -232,16 +264,22 @@ function Product({ product, setVideoRef, autoplay, sound }) {
           </div>
           <div className="product-single-r mt-1" dir="rtl">
             <div className="product-details font-manrope">
-              <div className="title">{product.name}</div>
-              <div className="price">
+              <div className="title mb-3">{product.name}</div>
+              <div className="price mb-2">
                 <div className="d-flex align-center">
-                  <div className="old-price">
-                    السعر: {product.unit_price * quantity} ر.س
+                  <div className="new-price ms-3">
+                    <span>السعر : </span>
+                    <span>
+                      {(product.unit_price - product.discount) * quantity} ر.س
+                    </span>
                   </div>
+                  {discount && (
+                    <div className="old-price">{product.unit_price} ر.س</div>
+                  )}
                 </div>
               </div>
-              <div className="qty align-center m-1">
-                <div className="qty-text mb-2 ms-2">الكمية:</div>
+              <div className="qty align-center m-1 mb-2">
+                <div className="qty-text mb-2 ms-2">الكمية :</div>
                 <div className="qty-change d-flex">
                   <button
                     type="button"
@@ -270,11 +308,28 @@ function Product({ product, setVideoRef, autoplay, sound }) {
                 )}
               </div>
               <div className="size-opt d-flex">
-                <div className="size-text mb-2 ms-2">المقاس:</div>
+                <div className="size-text mb-2 ms-2">المقاس :</div>
                 <div className="size-change d-flex">
-                  <select name="" id="">
-                    <option value="">-- اختر المقاس المناسب --</option>
-                  </select>
+                  <ul className="size-list">
+                    {data.map((siz) => {
+                      return (
+                        <li
+                          className="list-item"
+                          onClick={() => setToggleState(siz)}
+                        >
+                          <span
+                            className={
+                              toggleState === siz
+                                ? "list-item-opt active"
+                                : "list-item-opt"
+                            }
+                          >
+                            {siz}
+                          </span>
+                        </li>
+                      );
+                    })}
+                  </ul>
                 </div>
               </div>
             </div>
@@ -283,10 +338,11 @@ function Product({ product, setVideoRef, autoplay, sound }) {
         <div
           className="send-cart text-center mt-1 text-white"
           onClick={() => {
-            setAddcart((addcart) => !addcart);
+            // setAddcart((addcart) => !addcart);
             handleCart();
             setOption((option) => !option);
             addToCartHandler(product);
+            sweetAlertAdd();
           }}
         >
           اضف الي السلة
@@ -311,12 +367,12 @@ function Product({ product, setVideoRef, autoplay, sound }) {
       <div className="description ps-2 pe-2">
         <div className="description-btn">
           <div className="row">
-            <div className="col-lg-7 col-md-6 col-sm-6  d-flex justify-content-center align-items-center">
+            <div className="col-lg-6 d-flex justify-content-center align-items-center">
               <div className="product-name p-2">
                 <p className="m-0">{product.name}</p>
               </div>
             </div>
-            <div className="col-lg-5 col-md-6 col-sm-6 d-flex justify-content-center align-items-center">
+            <div className="col-lg-6 d-flex justify-content-center align-items-center">
               <div className="add-cart p-2">
                 <p
                   className="m-0"
