@@ -3,8 +3,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchAsyncProducts, getAllProducts } from "../store/productSlice";
 import Product from "../components/Product";
 import { FaVolumeHigh, FaVolumeXmark } from "react-icons/fa6";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation } from "swiper/modules";
 
 function Home() {
   const products = useSelector(getAllProducts);
@@ -60,32 +58,16 @@ function Home() {
 
   return (
     <Fragment>
-      <Swiper
-        className="swip"
-        modules={[Navigation]}
-        spaceBetween={50}
-        slidesPerView={1}
-        loop={true}
-        navigation
-        pagination={{ clickable: true }}
-        scrollbar={{ draggable: true }}
-        direction="vertical"
-        mousewheel={true}
-      >
-        {products.map((product, index) => {
-          return (
-            <SwiperSlide className="vid-card">
-              <Product
-                product={product}
-                setVideoRef={handleVideoRef(index)}
-                autoplay
-                sound={sound}
-              />
-            </SwiperSlide>
-          );
-        })}
-      </Swiper>
-
+      {products.map((product, index) => {
+        return (
+          <Product
+            product={product}
+            setVideoRef={handleVideoRef(index)}
+            autoplay
+            sound={sound}
+          />
+        );
+      })}
       <div className="volume">
         {volume ? (
           <FaVolumeHigh

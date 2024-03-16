@@ -31,3 +31,12 @@
 .hide-searchMenu {
   visibility: hidden;
 }
+
+.vid-card {
+  height: 510px;
+  transform: translate3d(0px, 0px, 0px);
+  -webkit-transform: translate3d(0px, 0px, 0px);
+  -moz-transform: translate3d(0px, 0px, 0px);
+  -ms-transform: translate3d(0px, 0px, 0px);
+  -o-transform: translate3d(0px, 0px, 0px);
+}
