@@ -181,12 +181,13 @@ function Product({ product, setVideoRef, autoplay, sound }) {
           data-wf-ignore="true"
           data-object-fit="cover"
           playsinline
+          playsInline
           inline={true}
           preload="auto"
           autoPlay
           muted={sound}
           mediaGroup="video"
-          controls={true}
+          // controls={true}
         >
           <source src={product.video_url} type="video/mp4" />
         </video>
