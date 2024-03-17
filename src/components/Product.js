@@ -184,7 +184,7 @@ function Product({ product, setVideoRef, autoplay, sound }) {
           inline
           preload="auto"
           autoPlay
-          muted
+          muted={sound}
           mediaGroup="video"
           // controls={true}
         >
