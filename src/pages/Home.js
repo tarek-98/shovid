@@ -61,11 +61,10 @@ function Home() {
   return (
     <Fragment>
       <div className="swipp-con">
-        <Swiper direction={"vertical"} className="mySwiper">
+        <Swiper direction={"vertical"} className="mySwiper" mousewheel={true}>
           {products.map((product, index) => {
             return (
               <SwiperSlide>
-                {" "}
                 <Product
                   product={product}
                   setVideoRef={handleVideoRef(index)}

@@ -177,8 +177,8 @@ function Product({ product, setVideoRef, autoplay, sound }) {
             setVideoRef(ref);
           }}
           loop
-          preload="none"
-          autoPlay
+          preload="auto"
+          autoPlay={true}
           muted={sound}
           mediaGroup="video"
           // controls={true}
