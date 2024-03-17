@@ -177,9 +177,10 @@ function Product({ product, setVideoRef, autoplay, sound }) {
             setVideoRef(ref);
           }}
           loop
+          defaultmuted
           data-wf-ignore="true"
           data-object-fit="cover"
-          playsinline
+          playsinline={true}
           preload="auto"
           autoPlay={true}
           muted={sound}
