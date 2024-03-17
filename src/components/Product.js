@@ -180,11 +180,11 @@ function Product({ product, setVideoRef, autoplay, sound }) {
           defaultmuted
           data-wf-ignore="true"
           data-object-fit="cover"
-          playsinline={true}
-          inline={true}
+          playsInline
+          inline
           preload="auto"
-          autoPlay={true}
-          muted={sound}
+          autoPlay
+          muted
           mediaGroup="video"
           // controls={true}
         >
