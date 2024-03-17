@@ -186,7 +186,7 @@ function Product({ product, setVideoRef, autoplay, sound }) {
           autoPlay
           muted={sound}
           mediaGroup="video"
-          // controls={true}
+          controls={true}
         >
           <source src={product.video_url} type="video/mp4" />
         </video>
