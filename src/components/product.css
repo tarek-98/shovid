@@ -20,6 +20,7 @@ body::-webkit-scrollbar {
   position: fixed;
   bottom: 19%;
   right: 35%;
+  z-index: 1;
 }
 
 @media (max-width:991px) {
@@ -27,6 +28,7 @@ body::-webkit-scrollbar {
     right: 25px;
   }
 }
+
 .volume svg {
   font-size: 20px;
   cursor: pointer;

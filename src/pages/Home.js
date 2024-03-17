@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchAsyncProducts, getAllProducts } from "../store/productSlice";
 import Product from "../components/Product";
 import { FaVolumeHigh, FaVolumeXmark } from "react-icons/fa6";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Pagination } from "swiper/modules";
 
 function Home() {
   const products = useSelector(getAllProducts);
@@ -58,16 +60,24 @@ function Home() {
 
   return (
     <Fragment>
-      {products.map((product, index) => {
-        return (
-          <Product
-            product={product}
-            setVideoRef={handleVideoRef(index)}
-            autoplay
-            sound={sound}
-          />
-        );
-      })}
+      <div className="swipp-con">
+        <Swiper direction={"vertical"} className="mySwiper">
+          {products.map((product, index) => {
+            return (
+              <SwiperSlide>
+                {" "}
+                <Product
+                  product={product}
+                  setVideoRef={handleVideoRef(index)}
+                  autoplay
+                  sound={sound}
+                />
+              </SwiperSlide>
+            );
+          })}
+        </Swiper>
+      </div>
+
       <div className="volume">
         {volume ? (
           <FaVolumeHigh
