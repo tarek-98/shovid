@@ -176,12 +176,12 @@ function Product({ product, setVideoRef, autoplay, sound }) {
             videoRef.current = ref;
             setVideoRef(ref);
           }}
-          loop
           defaultmuted
           data-wf-ignore="true"
           data-object-fit="cover"
-          playsinline
-          playsInline
+          loop={true}
+          autoplay={true}
+          playsinline={true}
           inline={true}
           preload="auto"
           autoPlay
